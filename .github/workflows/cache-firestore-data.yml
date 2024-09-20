@@ -1,4 +1,4 @@
-name: Cache Firestore Tracks
+name: Cache Firestore Data
 
 on:
   workflow_dispatch:
@@ -6,7 +6,7 @@ on:
     - cron: '*/15 * * * *'
 
 jobs:
-  fetch-latest:
+  cache-data:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout repository
@@ -20,12 +20,12 @@ jobs:
     - name: Install dependencies
       run: npm install
 
-    - name: Cache latest tracks
-      run: node latest.js
+    - name: Fetch and Write Cache
+      run: node index.js
       env:
         TRACKSTORE_SERVICE_ACCOUNT_KEY: ${{ secrets.TRACKSTORE_SERVICE_ACCOUNT_KEY }}
 
-    - name: Deploy to GitHub Pages
+    - name: Deploy Cache to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
