@@ -14,13 +14,14 @@ try {
       const snapshot = await tracksRef.get();
       const tracks = snapshot.docs.map((doc) => ({ ...doc.data() }));
 
-      const formattedTracks = tracks.map(({ i, n, c, f, t, p }) => ({
+      const formattedTracks = tracks.map(({ i, n, c, f, t, p, d }) => ({
         i,
         n,
         c,
         f,
         t,
         p,
+        d,
       }));
 
       if (!fs.existsSync("dist")) {
