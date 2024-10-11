@@ -21,7 +21,7 @@ try {
         f,
         t,
         p,
-        d,
+        d: new Date(d._seconds * 1000 + d._nanoseconds / 1000000),
       }));
 
       if (!fs.existsSync("dist")) {
